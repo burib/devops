@@ -20,7 +20,13 @@ jobs:
 
     steps:
       - checkout
-
+      - run:
+          name: "Setup IS_PRODUCTION environment variable"
+          command: |
+            echo 'export IS_PRODUCTION=$(echo $CIRCLE_TAG =~ "v[0-9]+(\.[0-9]+)*")' >> $BASH_ENV # Redirect MY_ENV_VAR into $BASH_ENV
+      - run:
+          name: "check IS_PRODUCTION variable's output"
+          command: echo ${IS_PRODUCTION}
       # Download and cache dependencies
       - restore_cache:
           keys:
