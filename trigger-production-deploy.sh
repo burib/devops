@@ -12,7 +12,7 @@ set -e
 REMOTE_BRANCH=${2}
 REMOTE_BRANCH_EXISTS=0
 CURRENT_BRANCH=$(git branch --show-current) # from git 2.2
-#CURRENT_BRANCH=${`git symbolic-ref HEAD | cut -d"/" -f3`}
+#CURRENT_BRANCH=$(git symbolic-ref HEAD | cut -d"/" -f3)
 git pull
 git fetch
 
