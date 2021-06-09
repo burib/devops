@@ -36,7 +36,7 @@ getLastGitTag() {
   echo $(git ls-remote --tags --sort="v:committerdate" | tail -n1 | sed 's/.*\///; s/\^{}//');
 }
 
-notes() {
+getFormattedLogsSinceLastTag() {
   local TAB_CHAR="%x09"
   local PREVIOUS_GIT_TAG=${1-$(getLastGitTag)}
   git log --no-merges --pretty=format:"%ci$TAB_CHAR%s" HEAD...$PREVIOUS_GIT_TAG;
