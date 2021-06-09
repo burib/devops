@@ -37,7 +37,9 @@ getLastGitTag() {
 }
 
 getFormattedLogsSinceLastTag() {
-  echo $(git log --pretty=format:"%cn %ci %s%n" HEAD...$(getLastGitTag));
+  local TAB_CHAR="%x09"
+  local LAST_GIT_TAG=${1-$(getLastGitTag)}
+  echo $(git log --pretty=format:"%cn$TAB_CHAR%ci$TAB_CHAR%s" HEAD...$LAST_GIT_TAG);
 }
 
 getVersion() {
